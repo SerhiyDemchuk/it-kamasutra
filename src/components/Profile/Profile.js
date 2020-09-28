@@ -1,29 +1,20 @@
 import React from 'react';
-import s from './Profile.module.css';
+import MyPosts from './MyPosts/MyPosts';
+import s from './Profile.module.scss';
 
 const Profile = () => {
     return (
         <div className={s.content}>
             <div>
-                <img src="https://i.ytimg.com/vi/RmNhHLsDXHw/maxresdefault.jpg" alt="" />
+                <img src="https://i.ytimg.com/vi/RmNhHLsDXHw/maxresdefault.jpg" alt="" width="100%" height="350px" />
             </div>
             <div>
-                ava + description
+                <img className={s.avatar} src="https://i.pinimg.com/originals/6f/da/31/6fda3104b2681155fba7161ff6f590f3.jpg"/>
+                <h2>Adam Grambowski</h2>
+                <p>About self:</p>
+                <h3>A cool gorilla from each woman's dream</h3>
             </div>
-            <div>
-                My posts
-            <div>
-                New posts
-            </div>
-                <div className={s.posts}>
-                    <div className={s.item}>
-                        post 1
-                    </div>
-                    <div className={s.item}>
-                        post 2
-                    </div>
-                </div>
-            </div>
+            <MyPosts/>
         </div>
     )
 }
