@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import state, { addPost, updateNewPostText, subscribe } from './Redux/state';
+import state, {subscribe} from './Redux/state';
 
 export let rerenderEntireTree = (state) => {
+  debugger;
   ReactDOM.render(
       <React.StrictMode>
           <App
-              state={state}
-              addPost={addPost}
-              updateNewPostText={updateNewPostText}
+            state={state}
           />
       </React.StrictMode>,
       document.getElementById('root')

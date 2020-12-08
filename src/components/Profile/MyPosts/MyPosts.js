@@ -3,20 +3,20 @@ import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-
+    // debugger;
     let newPost = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        props.store.addPost();
     }
-
-    let postsEls = props.postsData.map(
+    // debugger;
+    let postsEls = props.store.profilePage.postsData.map(
         posts => <Post avatar={posts.avatar} message={posts.post} like={posts.likesCount} />
     );
 
     let onPostChange = () => {
         let text = newPost.current.value;
-        props.updateNewPostText(text);
+        props.store.updateNewPostText(text);
     }
     
     return (

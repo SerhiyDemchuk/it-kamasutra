@@ -26,7 +26,30 @@ let state = {
             { id: 2, message: 'How are you?' },
             { id: 3, message: 'Шта О_о' },
         ],
+    },
+
+    addPost() {
+        let newPost = {
+            id: 4, 
+            avatar: 'https://bit.ly/39IgisU', 
+            post: this.profilePage.newPostText,
+            likesCount: 33,
+        };
+    
+        state.profilePage.postsData.push(newPost);
+        state.profilePage.newPostText = '';
+        rerenderEntireTree(this);
+    },
+    
+    updateNewPostText(text) {
+        state.profilePage.newPostText = text;
+        rerenderEntireTree(this);
+    },
+    
+    subscribe(observer) {
+        rerenderEntireTree = observer;
     }
+
 };
 
 
