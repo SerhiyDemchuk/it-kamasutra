@@ -2,25 +2,43 @@ import React from 'react';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+    let newPost = React.createRef();
+
+    let addPost = () => {
+        props.addPost();
+    }
+
+    let postsEls = props.postsData.map(
+        posts => <Post avatar={posts.avatar} message={posts.post} like={posts.likesCount} />
+    );
+
+    let onPostChange = () => {
+        let text = newPost.current.value;
+        props.updateNewPostText(text);
+    }
+    
     return (
-        <div>
-            My posts
+        <div className={s.postsBlock}>
+            <h3>My posts</h3>
             <div>
-                <textarea></textarea>
-                <button>Add post</button>
+                <div>
+                    <textarea 
+                        onChange={onPostChange}
+                        ref={newPost} 
+                        value={props.newPostText}
+                        />
+                </div>
+                <div>
+                    <button onClick={addPost}>Add post</button>
+                </div>
             </div>
             <div>
-                New posts
+                <h3>New posts</h3>
             </div>
             <div className={s.posts}>
-                <Post message='Proud to be US" symbol!' like='20'/>
-                <Post message='Hey buddy, how are you doing?' like='2'/>
-                <Post message='Just watched The Rise of Planet of Apes, did you cast there?' like='73'/>
-                {/* <div className={s.item}>
-                    <img src="https://i2-prod.crewechronicle.co.uk/incoming/article16583395.ece/ALTERNATES/s1200c/0_Lions-6.jpg"/>
-                    post 2
-                </div> */}
+                {postsEls}
             </div>
         </div>
     )
