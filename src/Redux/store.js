@@ -6,10 +6,10 @@ let store = {
     _state: {
         profilePage: {
             postsData: [
-                { id: 1, avatar: 'https://bit.ly/3orDK1x', post: 'O_o', likesCount: 23 },
-                { id: 2, avatar: 'https://bit.ly/36L1ibZ', post: 'Woof woof!', likesCount: 73 },
-                { id: 3, avatar: 'https://bit.ly/39Kx6iV', post: 'Woof!!!', likesCount: 64 },
-                { id: 4, avatar: 'https://bit.ly/3lQ9hsd', post: 'Bend your knees, bitch', likesCount: 216 },
+                { id: 1, firstName: 'Owl', lastName: 'Lee', avatar: 'https://bit.ly/3orDK1x', post: 'O_o', likesCount: 23 },
+                { id: 2, firstName: 'Bark', lastName: 'Woofson', avatar: 'https://bit.ly/36L1ibZ', post: 'Woof woof!', likesCount: 73 },
+                { id: 3, firstName: 'Woof', lastName: 'Barkson', avatar: 'https://bit.ly/39Kx6iV', post: 'Woof!!!', likesCount: 64 },
+                { id: 4, firstName: 'Lion', lastName: 'Kingston', avatar: 'https://bit.ly/3lQ9hsd', post: 'Bend your knees, bitch', likesCount: 216 },
             ],
             newPostText: 'it-kamasutra.com',
         },
