@@ -2,28 +2,20 @@ import React from 'react';
 import s from './Users.module.scss'
 
 let Users = (props) => {
-
-    if (props.users.length === 0) {
-        props.setUsers(
-            [
-                { id: 1, followed: true, name: 'Owl', surname: 'Lee', avatar: 'https://bit.ly/3orDK1x', status: 'BLM!', location: {city: 'Los Angeles', country: 'USA'} },
-                { id: 2, followed: false, name: 'Bark', surname: 'Woofson', avatar: 'https://bit.ly/36L1ibZ', status: 'On December 21st see you near monument', location: {city: 'Kyiv', country: 'Ukraine'} },
-                { id: 3, followed: false, name: 'Woof', surname: 'Barkson', avatar: 'https://bit.ly/39Kx6iV', status: 'Come and visit me someday', location: {city: 'Ljubljana', country: 'Slovenia'} },
-                { id: 4, followed: true, name: 'Lion', surname: 'Kingston', avatar: 'https://bit.ly/3lQ9hsd', status: 'One more time, bend your knees, bitch', location: {city: 'London', country: 'UK'} },
-            ]
-        )
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-
-    let onFollow = (user) => {
-        props.follow(user);
-    };
-
-    let onUnfollow = (user) => {
-        props.unfollow(user);
-    };
 
     return (
         <div className={s.item}>
+            <div>
+                {pages.map(p => {
+                    return <span className={props.currentPage === p && s.selectedPage}
+                        onClick={() => { props.onPageChanged(p) }}>{p}</span>
+                })}
+            </div>
             {
                 props.users.map(user => <div key={user.id}>
                     <span>
@@ -32,8 +24,8 @@ let Users = (props) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <button onClick={() => onUnfollow(user.id)}>Unfollow</button>
-                                : <button onClick={() => onFollow(user.id)}>Follow</button>
+                                ? <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
+                                : <button onClick={() => props.follow(user.id)}>Follow</button>
                             }
                         </div>
                     </span>
@@ -43,8 +35,8 @@ let Users = (props) => {
                             <div>{user.status}</div>
                         </span>
                         <span>
-                            <div>{user.location.country}</div>
-                            <div>{user.location.city}</div>
+                            {/* <div>{user.location.country}</div> */}
+                            {/* <div>{user.location.city}</div> */}
                         </span>
                     </span>
                     <div>
