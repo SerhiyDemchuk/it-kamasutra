@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
-import { setUserProfile } from '../../Redux/reducers/profileReducer';
+import { setUserProfile } from '../../redux/reducers/profileReducer';
 import { withRouter } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
