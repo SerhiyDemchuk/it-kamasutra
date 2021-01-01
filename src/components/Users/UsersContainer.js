@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { follow, setCurrentPage, unfollow, getUsers } from '../../redux/reducers/usersReducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 
 class UsersContainer extends React.Component {
 
@@ -34,6 +35,7 @@ class UsersContainer extends React.Component {
     }
 }
 
+
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -41,8 +43,9 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth
     }
 }
 
-export default connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsers })(UsersContainer);
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+
+export default connect(mapStateToProps, { follow, unfollow, setCurrentPage, getUsers })(AuthRedirectComponent);
