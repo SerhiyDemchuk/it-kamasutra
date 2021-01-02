@@ -3,7 +3,7 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getUserProfile } from '../../redux/reducers/profileReducer';
 import { withRouter } from 'react-router-dom';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+// import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
@@ -33,7 +33,7 @@ let mapStateToProps = (state) => ({
 let AuthRedirectComponent = compose(
     connect(mapStateToProps, { getUserProfile }),
     withRouter,
-    withAuthRedirect
+    // withAuthRedirect
     )(ProfileContainer);
 
-export default AuthRedirectComponent();
+export default AuthRedirectComponent;
