@@ -12,7 +12,6 @@ let initialState = {
         { id: 3, firstName: 'Woof', lastName: 'Barkson', avatar: 'https://bit.ly/39Kx6iV', post: 'Woof!!!', likesCount: 64 },
         { id: 4, firstName: 'Lion', lastName: 'Kingston', avatar: 'https://bit.ly/3lQ9hsd', post: 'Bend your knees, bitch', likesCount: 216 },
     ],
-    newPostText: 'it-kamasutra.com',
     profile: null,
     status: ''
 }
@@ -25,18 +24,12 @@ const profileReducer = (state = initialState, action) => {
                 name: 'Adam',
                 surname: 'Grambowski',
                 avatar: 'https://bit.ly/39IgisU',
-                post: state.newPostText,
+                post: action.newPostText,
                 likesCount: 33,
             };
             return {
                 ...state,
                 postsData: [...state.postsData, newPost],
-                newPostText: '',
-            };
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.text,
             };
         case SET_USER_PROFILE:
             return {
@@ -54,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
 }
 
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
-export const addPostAC = () => ({ type: ADD_POST });
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const updateNewPostTextAC = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 

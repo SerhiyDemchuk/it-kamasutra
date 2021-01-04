@@ -1,4 +1,5 @@
 import React from 'react';
+import { AddPostReduxForm } from '../../../reduxForm/forms';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
@@ -14,31 +15,15 @@ const MyPosts = (props) => {
         />
     );
 
-    let newPost = React.createRef();
-
-    let onAddPost = () => {
-        props.addPost();
-    }
-
-    let onPostChange = () => {
-        let text = newPost.current.value;
-        props.updateNewPostText(text)
+    let onAddPost = (value) => {
+        props.addPost(value.myPostInput);
     }
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
-                        ref={newPost}
-                        value={props.newPostText}
-                    />
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
-                </div>
+                <AddPostReduxForm onSubmit={onAddPost} />
             </div>
             <div>
                 <h3>New posts</h3>
@@ -49,5 +34,6 @@ const MyPosts = (props) => {
         </div>
     )
 }
+
 
 export default MyPosts;
