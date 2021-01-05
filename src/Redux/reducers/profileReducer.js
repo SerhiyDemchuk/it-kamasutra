@@ -25,7 +25,7 @@ const profileReducer = (state = initialState, action) => {
                 surname: 'Grambowski',
                 avatar: 'https://bit.ly/39IgisU',
                 post: action.newPostText,
-                likesCount: 33,
+                likesCount: Math.floor(Math.random() * (100 - 1)),
             };
             return {
                 ...state,
