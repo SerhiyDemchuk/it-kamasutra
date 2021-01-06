@@ -22,12 +22,12 @@ const passwordMinLength = minLengthCreator(6);
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder='Login' name='login' component={Input} validate={[required]} />
+                <Field placeholder='Email' name='email' component={Input} validate={[required]} />
             </div>
             <div>
-                <Field placeholder='Password' name='password' component={Input} validate={[required, passwordMinLength]} />
+                <Field placeholder='Password' name='password' component={Input} type='password' validate={[required, passwordMinLength]} />
             </div>
             <div>
                 <Field type='checkbox' name='rememberMe' component='input' /> remember me
