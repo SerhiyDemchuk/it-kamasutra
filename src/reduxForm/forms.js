@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Input, Textarea } from '../components/Common/FormsControl/FormsControl';
 import { maxLengthCreator, minLengthCreator, required } from '../utils/validators/validators';
+import style from '../components/Common/FormsControl/FormsControl.module.scss';
 
 const maxLength50 = maxLengthCreator(50);
 
@@ -9,7 +10,7 @@ const addMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Textarea} validate={[required, maxLength50]} name='newMessageBody' placeholder='Enter your message'/>
+                <Field component={Textarea} validate={[required, maxLength50]} name='newMessageBody' placeholder='Enter your message' />
             </div>
             <div>
                 <button>Send</button>
@@ -32,6 +33,10 @@ const LoginForm = (props) => {
             <div>
                 <Field type='checkbox' name='rememberMe' component='input' /> remember me
             </div>
+            { props.error && <div className={style.formSummaryError}>
+                {props.error}
+            </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -42,7 +47,7 @@ const LoginForm = (props) => {
 const maxLength10 = maxLengthCreator(10)
 
 const addPostForm = (props) => {
-    return(
+    return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder='it-kamasutra.com' name='myPostInput' component={Textarea} validate={[required, maxLength10]} />
