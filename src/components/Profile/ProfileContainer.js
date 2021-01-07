@@ -25,6 +25,7 @@ class ProfileContainer extends React.Component {
                     isAuth={this.props.isAuth}
                     status={this.props.status}
                     updateStatus={this.props.updateStatus}
+                    login={this.props.login}
                 />
             </div>
         )
@@ -35,7 +36,8 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    login: state.auth.login
 });
 
 let AuthRedirectComponent = compose(

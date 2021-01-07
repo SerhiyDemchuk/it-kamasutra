@@ -9,6 +9,7 @@ const Profile = (props) => {
                 profile={props.profile}
                 status={props.status}
                 updateStatus={props.updateStatus}
+                login={props.login}
             />
             <MyPostsContainer
                 store={props.store}
