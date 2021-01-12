@@ -5,8 +5,7 @@ import Post from './Post/Post';
 
 const MyPosts = React.memo(props => {
 
-    console.log('RENDER YO!');
-    let postsEls = props.postsData.map(posts =>
+    let postsEls = [...props.postsData].reverse().map(posts =>
         <Post
             name={posts.firstName}
             surname={posts.lastName}

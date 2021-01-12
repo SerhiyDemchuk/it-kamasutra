@@ -4,11 +4,12 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
     postsData: [
-        { id: 1, firstName: '', lastName: '', avatar: 'https://bit.ly/39IgisU', post: 'O_o', likesCount: 23 },
-        { id: 2, firstName: '', lastName: '', avatar: 'https://bit.ly/39IgisU', post: 'T_T', likesCount: 73 },
+        { id: 1, avatar: 'https://bit.ly/39IgisU', post: 'O_o', likesCount: 23 },
+        { id: 2, avatar: 'https://bit.ly/39IgisU', post: 'T_T', likesCount: 73 },
     ],
     profile: null,
     status: ''
@@ -37,8 +38,13 @@ const profileReducer = (state = initialState, action) => {
         case SET_STATUS:
             return {
                 ...state,
-                status: action.status
-            }
+                status: action.status,
+            };
+            case DELETE_POST:
+                return {
+                    ...state,
+                    postsData: state.postsData.filter(p => p.id !== action.postId),
+                }
         default:
             return state;
     }
@@ -48,6 +54,7 @@ const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const updateNewPostTextAC = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 export const getUserProfile = (userId) => {
     return (dispatch) => {
