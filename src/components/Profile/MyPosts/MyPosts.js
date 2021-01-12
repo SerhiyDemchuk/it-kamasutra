@@ -3,9 +3,11 @@ import { AddPostReduxForm } from '../../../reduxForm/forms';
 import s from './MyPosts.module.scss';
 import Post from './Post/Post';
 
-const MyPosts = (props) => {
-    let postsEls = props.postsData.map(
-        posts => <Post
+const MyPosts = React.memo(props => {
+
+    console.log('RENDER YO!');
+    let postsEls = props.postsData.map(posts =>
+        <Post
             name={posts.firstName}
             surname={posts.lastName}
             avatar={posts.avatar}
@@ -18,7 +20,6 @@ const MyPosts = (props) => {
     let onAddPost = (value) => {
         props.addPost(value.myPostInput);
     }
-
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -33,7 +34,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
-
+});
 
 export default MyPosts;

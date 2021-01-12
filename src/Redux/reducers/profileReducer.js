@@ -7,10 +7,8 @@ const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     postsData: [
-        { id: 1, firstName: 'Owl', lastName: 'Lee', avatar: 'https://bit.ly/3orDK1x', post: 'O_o', likesCount: 23 },
-        { id: 2, firstName: 'Bark', lastName: 'Woofson', avatar: 'https://bit.ly/36L1ibZ', post: 'Woof woof!', likesCount: 73 },
-        { id: 3, firstName: 'Woof', lastName: 'Barkson', avatar: 'https://bit.ly/39Kx6iV', post: 'Woof!!!', likesCount: 64 },
-        { id: 4, firstName: 'Lion', lastName: 'Kingston', avatar: 'https://bit.ly/3lQ9hsd', post: 'Bend your knees, bitch', likesCount: 216 },
+        { id: 1, firstName: '', lastName: '', avatar: 'https://bit.ly/39IgisU', post: 'O_o', likesCount: 23 },
+        { id: 2, firstName: '', lastName: '', avatar: 'https://bit.ly/39IgisU', post: 'T_T', likesCount: 73 },
     ],
     profile: null,
     status: ''
