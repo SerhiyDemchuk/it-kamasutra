@@ -6,12 +6,11 @@ import style from '../components/Common/FormsControl/FormsControl.module.scss';
 
 const maxLength50 = maxLengthCreator(50);
 
-const addMessageForm = (props) => {
+const addMessageForm = ({ handleSubmit }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={Textarea} validate={[required, maxLength50]} name='newMessageBody' placeholder='Enter your message' />
-            </div>
+        <form onSubmit={handleSubmit}>
+            {/* {createField('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)} */}
+            <Field component={Textarea} validate={[required, maxLength50]} name='newMessageBody' placeholder='Enter your message' />
             <div>
                 <button>Send</button>
             </div>
@@ -21,9 +20,12 @@ const addMessageForm = (props) => {
 
 const passwordMinLength = minLengthCreator(6);
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            {/* {createField('Email', 'email', Input, [required])}
+            {createField('Password', 'password', [required, passwordMinLength], Input, {type: 'password'})}
+            {createField(null, 'rememberMe', null, Input, {type: 'checkbox'}, 'remember me')} */}
             <div>
                 <Field placeholder='Email' name='email' component={Input} validate={[required]} />
             </div>
@@ -33,8 +35,8 @@ const LoginForm = (props) => {
             <div>
                 <Field type='checkbox' name='rememberMe' component='input' /> remember me
             </div>
-            { props.error && <div className={style.formSummaryError}>
-                {props.error}
+            { error && <div className={style.formSummaryError}>
+                {error}
             </div>
             }
             <div>
@@ -46,10 +48,11 @@ const LoginForm = (props) => {
 
 const maxLength10 = maxLengthCreator(10)
 
-const addPostForm = (props) => {
+const addPostForm = ({ handleSubmit }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
+                {/* {createField('it-kamasutra.com', 'myPostInput', { required, maxLength10 }, {Input})} */}
                 <Field placeholder='it-kamasutra.com' name='myPostInput' component={Textarea} validate={[required, maxLength10]} />
             </div>
             <div>
