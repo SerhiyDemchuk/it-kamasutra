@@ -17,6 +17,8 @@ import { withSuspense } from './hoc/withSuspense';
 const DialoguesContainer = React.lazy(() => import('./components/Dialogues/DialoguesContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const Login = React.lazy(() => import('./components/Login/Login'));
+
+
 class App extends React.Component {
 
   componentDidMount() {
