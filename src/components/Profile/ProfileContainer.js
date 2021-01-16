@@ -1,31 +1,48 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus } from '../../redux/reducers/profileReducer';
+import { getUserProfile, getStatus, updateStatus, savePhoto } from '../../redux/reducers/profileReducer';
 import { withRouter } from 'react-router-dom';
 // import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
+    
+    refreshProfile() {
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = this.props.authorizedUserId;
+            if (!userId) {
+                this.props.history.push('login');
+            }
+        }
+        this.props.getUserProfile(userId);
+        this.props.getStatus(userId);
+    }
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId) userId = this.props.authorizedUserId;
-        this.props.getUserProfile(userId);
-        setTimeout(() => {
-            this.props.getStatus(userId);
-        }, 1000);
+        console.log('CompDidMount');
+        this.refreshProfile();
+    }
+
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('CompDidUpdate');
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile();
+        }
     }
 
     render() {
         return (
             <div>
                 <Profile {...this.props}
+                    isOwner={!this.props.match.params.userId}
                     profile={this.props.profile}
-                    isAuth={this.props.isAuth}
                     status={this.props.status}
                     updateStatus={this.props.updateStatus}
                     login={this.props.login}
+                    savePhoto={this.props.savePhoto}
                 />
             </div>
         )
@@ -41,9 +58,9 @@ let mapStateToProps = (state) => ({
 });
 
 let AuthRedirectComponent = compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
     withRouter,
     // withAuthRedirect
-    )(ProfileContainer);
+)(ProfileContainer);
 
 export default AuthRedirectComponent;
