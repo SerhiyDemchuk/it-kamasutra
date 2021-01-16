@@ -1,0 +1,35 @@
+{
+  "files": {
+    "static/js/0.f05c955f.chunk.js": "/it-kamasutra/static/js/0.f05c955f.chunk.js",
+    "static/js/0.f05c955f.chunk.js.map": "/it-kamasutra/static/js/0.f05c955f.chunk.js.map",
+    "main.css": "/it-kamasutra/static/css/main.b5b28056.chunk.css",
+    "main.js": "/it-kamasutra/static/js/main.9c0a45f3.chunk.js",
+    "main.js.map": "/it-kamasutra/static/js/main.9c0a45f3.chunk.js.map",
+    "runtime-main.js": "/it-kamasutra/static/js/runtime-main.316d3c41.js",
+    "runtime-main.js.map": "/it-kamasutra/static/js/runtime-main.316d3c41.js.map",
+    "static/js/3.7eca98a5.chunk.js": "/it-kamasutra/static/js/3.7eca98a5.chunk.js",
+    "static/js/3.7eca98a5.chunk.js.map": "/it-kamasutra/static/js/3.7eca98a5.chunk.js.map",
+    "static/css/4.5fa63d91.chunk.css": "/it-kamasutra/static/css/4.5fa63d91.chunk.css",
+    "static/js/4.6da7cd62.chunk.js": "/it-kamasutra/static/js/4.6da7cd62.chunk.js",
+    "static/js/4.6da7cd62.chunk.js.map": "/it-kamasutra/static/js/4.6da7cd62.chunk.js.map",
+    "static/css/5.98a4d68c.chunk.css": "/it-kamasutra/static/css/5.98a4d68c.chunk.css",
+    "static/js/5.be5d6a3e.chunk.js": "/it-kamasutra/static/js/5.be5d6a3e.chunk.js",
+    "static/js/5.be5d6a3e.chunk.js.map": "/it-kamasutra/static/js/5.be5d6a3e.chunk.js.map",
+    "static/css/6.bf0426fc.chunk.css": "/it-kamasutra/static/css/6.bf0426fc.chunk.css",
+    "static/js/6.943adb5e.chunk.js": "/it-kamasutra/static/js/6.943adb5e.chunk.js",
+    "static/js/6.943adb5e.chunk.js.map": "/it-kamasutra/static/js/6.943adb5e.chunk.js.map",
+    "index.html": "/it-kamasutra/index.html",
+    "static/css/4.5fa63d91.chunk.css.map": "/it-kamasutra/static/css/4.5fa63d91.chunk.css.map",
+    "static/css/5.98a4d68c.chunk.css.map": "/it-kamasutra/static/css/5.98a4d68c.chunk.css.map",
+    "static/css/6.bf0426fc.chunk.css.map": "/it-kamasutra/static/css/6.bf0426fc.chunk.css.map",
+    "static/css/main.b5b28056.chunk.css.map": "/it-kamasutra/static/css/main.b5b28056.chunk.css.map",
+    "static/js/3.7eca98a5.chunk.js.LICENSE.txt": "/it-kamasutra/static/js/3.7eca98a5.chunk.js.LICENSE.txt",
+    "static/media/preloader.03155f95.svg": "/it-kamasutra/static/media/preloader.03155f95.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.316d3c41.js",
+    "static/js/3.7eca98a5.chunk.js",
+    "static/css/main.b5b28056.chunk.css",
+    "static/js/main.9c0a45f3.chunk.js"
+  ]
+}
