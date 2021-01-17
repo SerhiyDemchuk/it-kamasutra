@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Input, Textarea } from '../components/Common/FormsControl/FormsControl';
+import { createField, Input, Textarea } from '../components/Common/FormsControl/FormsControl';
 import { maxLengthCreator, minLengthCreator, required } from '../utils/validators/validators';
 import style from '../components/Common/FormsControl/FormsControl.module.scss';
 
@@ -23,18 +23,9 @@ const passwordMinLength = minLengthCreator(6);
 const LoginForm = ({ handleSubmit, error }) => {
     return (
         <form onSubmit={handleSubmit}>
-            {/* {createField('Email', 'email', Input, [required])}
+            {createField('Email', 'email', [required], Input)}
             {createField('Password', 'password', [required, passwordMinLength], Input, {type: 'password'})}
-            {createField(null, 'rememberMe', null, Input, {type: 'checkbox'}, 'remember me')} */}
-            <div>
-                <Field placeholder='Email' name='email' component={Input} validate={[required]} />
-            </div>
-            <div>
-                <Field placeholder='Password' name='password' component={Input} type='password' validate={[required, passwordMinLength]} />
-            </div>
-            <div>
-                <Field type='checkbox' name='rememberMe' component='input' /> remember me
-            </div>
+            {createField(null, 'rememberMe', null, Input, {type: 'checkbox'}, 'remember me')}
             { error && <div className={style.formSummaryError}>
                 {error}
             </div>

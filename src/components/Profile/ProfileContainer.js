@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus, savePhoto } from '../../redux/reducers/profileReducer';
+import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from '../../redux/reducers/profileReducer';
 import { withRouter } from 'react-router-dom';
 // import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
@@ -13,7 +13,7 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = this.props.authorizedUserId;
             if (!userId) {
-                this.props.history.push('login');
+                this.props.history.push('profile/13574');
             }
         }
         this.props.getUserProfile(userId);
@@ -21,13 +21,11 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log('CompDidMount');
         this.refreshProfile();
     }
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('CompDidUpdate');
         if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile();
         }
@@ -43,6 +41,7 @@ class ProfileContainer extends React.Component {
                     updateStatus={this.props.updateStatus}
                     login={this.props.login}
                     savePhoto={this.props.savePhoto}
+                    saveProfile={this.props.saveProfile}
                 />
             </div>
         )
@@ -53,12 +52,11 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth,
     login: state.auth.login
 });
 
 let AuthRedirectComponent = compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
     withRouter,
     // withAuthRedirect
 )(ProfileContainer);
