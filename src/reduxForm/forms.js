@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from '../components/Common/FormsControl/FormsControl';
 import { maxLengthCreator, minLengthCreator, required } from '../utils/validators/validators';
 import style from '../components/Common/FormsControl/FormsControl.module.scss';
@@ -9,8 +9,7 @@ const maxLength50 = maxLengthCreator(50);
 const addMessageForm = ({ handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
-            {/* {createField('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)} */}
-            <Field component={Textarea} validate={[required, maxLength50]} name='newMessageBody' placeholder='Enter your message' />
+            {createField('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)}
             <div>
                 <button>Send</button>
             </div>
@@ -20,12 +19,16 @@ const addMessageForm = ({ handleSubmit }) => {
 
 const passwordMinLength = minLengthCreator(6);
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required], Input)}
             {createField('Password', 'password', [required, passwordMinLength], Input, {type: 'password'})}
             {createField(null, 'rememberMe', null, Input, {type: 'checkbox'}, 'remember me')}
+
+            {captchaUrl && <img src={captchaUrl} alt=''/> }
+            {captchaUrl && createField('Type captcha here', 'captcha', [required], Input) }
+
             { error && <div className={style.formSummaryError}>
                 {error}
             </div>
@@ -43,8 +46,7 @@ const addPostForm = ({ handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                {/* {createField('it-kamasutra.com', 'myPostInput', { required, maxLength10 }, {Input})} */}
-                <Field placeholder='it-kamasutra.com' name='myPostInput' component={Textarea} validate={[required, maxLength10]} />
+                {createField('it-kamasutra.com', 'myPostInput', { required, maxLength10 }, {Input})}
             </div>
             <div>
                 <button>Add post</button>
