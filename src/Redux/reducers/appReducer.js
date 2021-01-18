@@ -4,6 +4,7 @@ const INITIALIZED_SUCCESSFUL = 'app/INITIALIZED_SUCCESSFUL';
 
 let initialState = {
     initialized: false,
+    globalError: null,
 }
 
 const appReducer = (state = initialState, action) => {

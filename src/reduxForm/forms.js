@@ -46,7 +46,7 @@ const addPostForm = ({ handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                {createField('it-kamasutra.com', 'myPostInput', { required, maxLength10 }, {Input})}
+                {createField('it-kamasutra.com', 'myPostInput', [required, maxLength10], Input)}
             </div>
             <div>
                 <button>Add post</button>

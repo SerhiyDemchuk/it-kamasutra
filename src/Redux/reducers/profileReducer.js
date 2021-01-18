@@ -47,11 +47,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: state.postsData.filter(p => p.id !== action.postId),
             };
-            case SAVE_PHOTO_SUCCESS:
-                return {
-                    ...state,
-                    profile: {...state.profile, photos: action.photos}
-                };
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: { ...state.profile, photos: action.photos }
+            };
         default:
             return state;
     }
@@ -62,54 +62,62 @@ export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const updateNewPostTextAC = (text) => ({ type: UPDATE_NEW_POST_TEXT, text });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
-const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos});
+const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
-export const getUserProfile = (userId) => {
-    return async (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
+    try {
         let response = await usersAPI.getProfile(userId);
         dispatch(setUserProfile(response.data));
-
+    } catch (error) {
+        alert(error);
     }
 }
 
-export const getStatus = (userId) => {
-    return async (dispatch) => {
+export const getStatus = (userId) => async (dispatch) => {
+    try {
+
         let response = await profileAPI.getStatus(userId);
         dispatch(setStatus(response.data));
+    } catch (error) {
+        alert(error);
     }
 }
 
-export const updateStatus = (status) => {
-    return async (dispatch) => {
+export const updateStatus = (status) => async (dispatch) => {
+    try {
         let response = await profileAPI.updateStatus(status);
 
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status));
         }
+    } catch (error) {
+        alert(error);
     }
 }
 
-export const savePhoto = (file) => {
-    return async (dispatch) => {
+export const savePhoto = (file) => async (dispatch) => {
+    try {
         let response = await profileAPI.savePhoto(file);
-
         if (response.data.resultCode === 0) {
-            dispatch(savePhotoSuccess(response.data.data.photos));
         }
+        dispatch(savePhotoSuccess(response.data.data.photos));
+    } catch (error) {
+        alert(error);
     }
 }
 
-export const saveProfile = (profile) => {
-    return async (dispatch, getState) => {
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    try {
         const userId = getState().auth.userId;
         const response = await profileAPI.saveProfile(profile);
-
         if (response.data.resultCode === 0) {
             dispatch(getUserProfile(userId));
         } else {
-            dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}));
+            dispatch(stopSubmit('edit-profile', { _error: response.data.messages[0] }));
             return Promise.reject(response.data.messages[0]);
         }
+    } catch (error) {
+        alert(error);
     }
 }
 
