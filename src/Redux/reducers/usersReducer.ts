@@ -119,7 +119,7 @@ export const requestUsers = (requestedPage: number, pageSize: number): ThunkType
     }
 }
 
-const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any, actionCreator: (userId: number) => followUserActionType | unfollowUserActionType ) => {
+const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any, actionCreator: (userId: number) => followUserActionType | unfollowUserActionType) => {
     dispatch(toggleIsFollowingProgress(true, userId));
     let response = await apiMethod(userId);
 
@@ -132,14 +132,14 @@ const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMe
 export const follow = (userId: number): ThunkType => {
     return async (dispatch) => {
         let apiFollow = usersAPI.follow.bind(usersAPI);
-        followUnfollowFlow(dispatch, userId, apiFollow, followUser);
+        _followUnfollowFlow(dispatch, userId, apiFollow, followUser);
     }
 }
 
 export const unfollow = (userId: number): ThunkType => {
     return async (dispatch) => {
         let apiUnfollow = usersAPI.unfollow.bind(usersAPI);
-        followUnfollowFlow(dispatch, userId, apiUnfollow, unfollowUser);
+        _followUnfollowFlow(dispatch, userId, apiUnfollow, unfollowUser);
     }
 }
 
