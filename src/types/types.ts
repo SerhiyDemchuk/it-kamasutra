@@ -9,7 +9,7 @@ export type contactsType = {
     github: string
     vk: string
     facebook: string
-    Instagram: string
+    instagram: string
     twitter: string
     website: string
     youtube: string
