@@ -1,0 +1,19 @@
+.avatar {
+  max-width: 200px;
+  border-radius: 50px;
+}
+
+.descriptionBlock {
+  padding: 10px;
+}
+
+.contact {
+  padding-left: 10px;
+}
+
+.formSummaryError {
+  border: red 1px solid;
+  padding: 5px;
+  color: rosybrown;
+}
+/*# sourceMappingURL=ProfileInfo.module.css.map */
