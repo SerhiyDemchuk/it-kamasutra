@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
+import { InjectedFormProps, reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from '../components/Common/FormsControl/FormsControl';
 import { maxLengthCreator, minLengthCreator, required } from '../utils/validators/validators';
 import style from '../components/Common/FormsControl/FormsControl.module.scss';
@@ -19,12 +19,26 @@ const addMessageForm = ({ handleSubmit }) => {
 
 const passwordMinLength = minLengthCreator(6);
 
-const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
+type LoginFormValuesType = {
+    captchaUrl: string,
+    rememberMe: boolean,
+    email: string,
+    password: string,
+}
+
+type LoginFormOwnProps = {
+    captchaUrl: string | null
+}
+
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>;
+
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({ handleSubmit, error, captchaUrl }) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField('Email', 'email', [required], Input)}
-            {createField('Password', 'password', [required, passwordMinLength], Input, {type: 'password'})}
-            {createField(null, 'rememberMe', null, Input, {type: 'checkbox'}, 'remember me')}
+            {createField<LoginFormValuesTypeKeys>('Email', 'email', [required], Input)}
+            {createField<LoginFormValuesTypeKeys>('Password', 'password', [required, passwordMinLength], Input, {type: 'password'})}
+            {createField<LoginFormValuesTypeKeys>(undefined, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
 
             {captchaUrl && <img src={captchaUrl} alt=''/> }
             {captchaUrl && createField('Type captcha here', 'captcha', [required], Input) }
@@ -56,5 +70,5 @@ const addPostForm = ({ handleSubmit }) => {
 }
 
 export const AddPostReduxForm = reduxForm({ form: 'addPost' })(addPostForm);
-export const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
+export const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({ form: 'login' })(LoginForm);
 export const AddMessageReduxForm = reduxForm({ form: 'dialgueAddMessageForm' })(addMessageForm);

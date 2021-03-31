@@ -3,10 +3,21 @@ import { LoginReduxForm } from '../../reduxForm/forms';
 import {connect} from 'react-redux';
 import { login } from '../../redux/reducers/authReducer';
 import { Redirect } from 'react-router-dom';
+import { AppStateType } from '../../redux/reduxStore';
+import { LoginFormValuesType } from '../Common/FormsControl/FormsControl';
 
-const Login = ({login, isAuth, captchaUrl}) => {
+type MapStatePropsType = {
+    captchaUrl: string | null,
+    isAuth: boolean
+}
+
+type MapDispatchPropsType = {
+    login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+}
+
+const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = ({login, isAuth, captchaUrl}) => {
     
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: LoginFormValuesType) => {
         login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
@@ -20,7 +31,7 @@ const Login = ({login, isAuth, captchaUrl}) => {
     )
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl,
 })
