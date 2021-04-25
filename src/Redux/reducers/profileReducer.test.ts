@@ -1,15 +1,18 @@
-import profileReducer, { addPost, deletePost } from "./profileReducer";
+import profileReducer, { actions } from "./profileReducer";
 
 let state = {
     postsData: [
         { id: 1, avatar: 'https://bit.ly/39IgisU', post: 'O_o', likesCount: 23 },
         { id: 2, avatar: 'https://bit.ly/39IgisU', post: 'T_T', likesCount: 73 },
-    ]
+    ],
+    profile: null,
+    status: '',
+    newPostText: ''
 }
 
 it('postsData array\'s length should be incremented', () => {
     // 1. test data:
-    let action = addPost('test result');
+    let action = actions.addPost('test result');
     // 2. action:
     let newState = profileReducer(state, action);
     // 3. expectation:
@@ -18,7 +21,7 @@ it('postsData array\'s length should be incremented', () => {
 
 it('after delete posts count should be decremented', () => {
     // 1. test data:
-    let action = deletePost(1);
+    let action = actions.deletePost(1);
     // 2. action:
     let newState = profileReducer(state, action);
     // 3. expectation:
@@ -27,7 +30,7 @@ it('after delete posts count should be decremented', () => {
 
 it('after delete posts count should not be decremented', () => {
     // 1. test data:
-    let action = deletePost(1000);
+    let action = actions.deletePost(1000);
     // 2. action:
     let newState = profileReducer(state, action);
     // 3. expectation:
