@@ -6,14 +6,14 @@ import Preloader from '../Common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 import { getUsers, getCurrentPage, getFollowingInProgress, getPageSize, getTotalUsersCount } from '../../redux/reducers/usersSelectors';
-import { userType } from '../../types/types';
+import { UserType } from '../../types/types';
 import { AppStateType } from '../../redux/reduxStore';
 
 type MapStatePropsType = {
     currentPage: number
     pageSize: number
     totalUsersCount: number
-    users: Array<userType>    
+    users: Array<UserType>
     followingInProgress: Array<number>
 }
 
@@ -46,7 +46,7 @@ class UsersContainer extends React.Component<PropsType> {
         return (
             <div>
                 <h2>{this.props.pageTitle}</h2>
-                { this.props.isFetching ? <Preloader /> : null }
+                { this.props.isFetching ? <Preloader /> : null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     onPageChanged={this.onPageChanged}
