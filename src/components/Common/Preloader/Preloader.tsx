@@ -1,7 +1,9 @@
 import React from 'react';
 import preloader from '../../../assets/images/preloader.svg';
 
-let Preloader = (props) => {
+type PropsType = {};
+
+const Preloader: React.FC<PropsType> = (props) => {
     return (
         <div>
             <img src={preloader} alt="" />

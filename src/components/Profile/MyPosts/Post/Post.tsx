@@ -1,9 +1,17 @@
 import React from 'react';
-import s from './Post.module.scss';
+import style from './Post.module.scss';
 
-const Post = (props) => {
+type PropsType = {
+    avatar: string
+    name: string
+    surname: string
+    message: string
+    like: number
+}
+
+const Post: React.FC<PropsType> = (props) => {
     return (
-        <div className={s.item}>
+        <div className={style.item}>
             <img src={props.avatar} alt=""/>
                 {props.name} {props.surname}
                 <br/>

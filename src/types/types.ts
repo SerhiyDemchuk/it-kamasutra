@@ -3,6 +3,8 @@ export type PostType = {
     avatar: string
     post: string
     likesCount: number
+    firstName: string
+    lastName: string
 }
 
 export type ContactsType = {
@@ -28,6 +30,7 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     photos: PhotosType
+    aboutMe: string
 }
 
 export type UserType = {

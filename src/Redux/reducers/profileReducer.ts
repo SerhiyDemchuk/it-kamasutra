@@ -10,7 +10,6 @@ let initialState = {
     ] as Array<PostType>,
     profile: null as ProfileType | null,
     status: '',
-    newPostText: ''
 }
 
 const profileReducer = (state = initialState, action: ActionsType): initialStateType => {
@@ -18,8 +17,8 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
         case 'SN/profile/ADD_POST':
             let newPost = {
                 id: 5,
-                name: 'Adam',
-                surname: 'Grambowski',
+                firstName: 'Adam',
+                lastName: 'Grambowski',
                 avatar: 'https://bit.ly/39IgisU',
                 post: action.newPostText,
                 likesCount: Math.floor(Math.random() * (100 - 1)),
@@ -27,7 +26,6 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
             return {
                 ...state,
                 postsData: [...state.postsData, newPost],
-                newPostText: ''
             };
         case 'SN/profile/SET_USER_PROFILE':
             return {

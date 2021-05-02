@@ -1,6 +1,6 @@
 import React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
-import { createField, Input, Textarea } from '../components/Common/FormsControl/FormsControl';
+import { createField, GetStringKeys, Input, Textarea } from '../components/Common/FormsControl/FormsControl';
 import { maxLengthCreator, minLengthCreator, required } from '../utils/validators/validators';
 import style from '../components/Common/FormsControl/FormsControl.module.scss';
 import { NewMessageFormValuesType } from '../components/Dialogues/Dialogues';
@@ -8,9 +8,9 @@ import { NewMessageFormValuesType } from '../components/Dialogues/Dialogues';
 const maxLength50 = maxLengthCreator(50);
 
 type NewMessageFormValuesKeysType = Extract<keyof NewMessageFormValuesType, string>;
-type PropsType = {};
+type AddMessagePropsType = {};
 
-const addMessageForm: React.FC<InjectedFormProps<NewMessageFormValuesType, PropsType> & PropsType> = ({ handleSubmit }) => {
+const addMessageForm: React.FC<InjectedFormProps<NewMessageFormValuesType, AddMessagePropsType> & AddMessagePropsType> = ({ handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             {createField<NewMessageFormValuesKeysType>('Enter your message', 'newMessageBody', [required, maxLength50], Textarea)}
@@ -58,13 +58,19 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPro
     )
 }
 
-const maxLength10 = maxLengthCreator(10)
+type AddPostPropsType = {};
 
-const addPostForm = ({ handleSubmit }) => {
+export type AddPostFormValuesType = {
+    newPostText: string
+}
+
+type AddPostFormValuesTypeKeys = GetStringKeys<AddPostFormValuesType>;
+
+const addPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, AddPostPropsType> & AddPostPropsType> = ({ handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                {createField('it-kamasutra.com', 'myPostInput', [required, maxLength10], Input)}
+                {createField<AddPostFormValuesTypeKeys>('it-kamasutra.com', 'newPostText', [required], Input)}
             </div>
             <div>
                 <button>Add post</button>
@@ -73,6 +79,6 @@ const addPostForm = ({ handleSubmit }) => {
     )
 }
 
-export const AddPostReduxForm = reduxForm({ form: 'addPost' })(addPostForm);
+export const AddPostReduxForm = reduxForm<AddPostPropsType, AddPostPropsType>({ form: 'addPost' })(addPostForm);
 export const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({ form: 'login' })(LoginForm);
 export const AddMessageReduxForm = reduxForm<NewMessageFormValuesType>({ form: 'dialgueAddMessageForm' })(addMessageForm);

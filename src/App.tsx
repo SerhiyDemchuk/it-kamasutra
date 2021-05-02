@@ -1,30 +1,32 @@
-import React, { ComponentType } from 'react';
-import './App.css';
+import React from 'react';
+import { compose } from 'redux';
+import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
+
 import News from './components/News/News';
 import Music from './components/Music/Music';
+import Navbar from './components/Navbar/Navbar';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import { connect, Provider } from 'react-redux';
-import { initializeApp } from './redux/reducers/appReducer';
-import { compose } from 'redux';
 import Preloader from './components/Common/Preloader/Preloader';
-import store, { AppStateType } from './redux/reduxStore';
-import { withSuspense } from './hoc/withSuspense';
+import HeaderContainer from './components/Header/HeaderContainer';
 
-const DialoguesContainer = React.lazy(() => import('./components/Dialogues/DialoguesContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+import './App.css';
+import { withSuspense } from './hoc/withSuspense';
+import store, { AppStateType } from './redux/reduxStore';
+import { initializeApp } from './redux/reducers/appReducer';
+
 const Login = React.lazy(() => import('./components/Login/Login'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialoguesContainer = React.lazy(() => import('./components/Dialogues/DialoguesContainer'));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
   initializeApp: () => void
 }
 
-const SuspendedDialogs = withSuspense(DialoguesContainer);
 const SuspendedProfile = withSuspense(ProfileContainer);
+const SuspendedDialogs = withSuspense(DialoguesContainer);
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
 

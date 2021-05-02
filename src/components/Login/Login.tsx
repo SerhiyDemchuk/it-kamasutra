@@ -1,15 +1,24 @@
 import React from 'react';
-import { LoginReduxForm } from '../../reduxForm/forms';
 import {connect} from 'react-redux';
-import { login } from '../../redux/reducers/authReducer';
 import { Redirect } from 'react-router-dom';
+
 import { AppStateType } from '../../redux/reduxStore';
-import { LoginFormValuesType } from '../Common/FormsControl/FormsControl';
+import { LoginReduxForm } from '../../reduxForm/forms';
+import { login } from '../../redux/reducers/authReducer';
 
 type MapStatePropsType = {
     captchaUrl: string | null,
     isAuth: boolean
 }
+
+export type LoginFormValuesType = {
+    captcha: string
+    rememberMe: boolean
+    password: string
+    email: string
+}
+
+// type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
 
 type MapDispatchPropsType = {
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
